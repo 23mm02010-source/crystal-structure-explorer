@@ -1,0 +1,12 @@
+{
+  "framework": "vite",
+  "buildCommand": "npm run build --prefix my-app",
+  "outputDirectory": "my-app/dist",
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

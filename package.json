@@ -1,0 +1,10 @@
+{
+  "name": "crystal-structure-explorer",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "npm run dev --prefix my-app",
+    "build": "npm run build --prefix my-app",
+    "preview": "npm run preview --prefix my-app"
+  }
+}
