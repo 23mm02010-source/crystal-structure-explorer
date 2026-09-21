@@ -1,10 +1,9 @@
 # Dependencies
 node_modules/
-my-app/node_modules/
+my-app/
 
 # Production build outputs
 dist/
-my-app/dist/
 
 # Logs
 *.log
