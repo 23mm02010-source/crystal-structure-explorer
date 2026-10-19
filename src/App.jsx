@@ -4,15 +4,11 @@ import Navbar from './components/Navbar.jsx';
 import CrystalCanvas from './components/CrystalCanvas.jsx';
 import ControlSidebar from './components/ControlSidebar.jsx';
 import InfoCardPanel from './components/InfoCardPanel.jsx';
-import DislocationStudio from './components/DislocationStudio.jsx';
 import HelpModal from './components/HelpModal.jsx';
 import { STRUCTURE_DEFS } from './data/structures.js';
 import { COMPOUNDS } from './data/compounds.js';
 
 export default function App() {
-  // App Mode: 'crystal' (Unit Cell Explorer) or 'dislocation' (Defects Studio)
-  const [mode, setMode] = useState('crystal');
-
   // Category and Compound Selection
   const [categoryTab, setCategoryTab] = useState('metal');
   const [selectedCompoundId, setSelectedCompoundId] = useState('cu');
@@ -126,8 +122,6 @@ export default function App() {
     <div className="app-layout">
       {/* Top Navigation Bar */}
       <Navbar
-        mode={mode}
-        setMode={setMode}
         structureName={activeStructureDef.name}
         compoundName={effectiveCompound.name}
         onResetCamera={handleResetCamera}
@@ -136,94 +130,89 @@ export default function App() {
 
       {/* Main Content Area */}
       <main className="app-main-content">
-        {mode === 'crystal' ? (
-          <div className="crystal-view-layout">
-            {/* Split 3D View and Sidebar */}
-            <div className="workspace-split">
-              {/* 3D Canvas Area */}
-              <div className="canvas-column">
-                <CrystalCanvas
-                  structureDef={activeStructureDef}
-                  compound={rawCompound}
-                  activeA={activeA}
-                  activeC={activeC}
-                  effectiveCompound={effectiveCompound}
-                  showAtoms={showAtoms}
-                  showBonds={showBonds}
-                  showOcta={showOcta}
-                  showTetra={showTetra}
-                  showVoidCages={showVoidCages}
-                  showMillerPlanes={showMillerPlanes}
-                  activeMillerPlane={activeMillerPlane}
-                  supercellSize={supercellSize}
-                  measState={measState}
-                  atomScale={atomScale}
-                  autoRotate={autoRotate}
-                  stochasticDisorder={stochasticDisorder}
-                  pztFraction={pztFraction}
-                  resetTrigger={resetTrigger}
-                />
-              </div>
-
-              {/* Controls Column */}
-              <ControlSidebar
-                compounds={COMPOUNDS}
-                selectedCompoundId={selectedCompoundId}
-                onSelectCompound={handleSelectCompound}
-                categoryTab={categoryTab}
-                onSelectCategory={setCategoryTab}
-                temperature={temperature}
-                onTemperatureChange={setTemperature}
-                activePhase={activePhase}
-                pztFraction={pztFraction}
-                onPztFractionChange={setPztFraction}
-                stochasticDisorder={stochasticDisorder}
-                onToggleStochasticDisorder={setStochasticDisorder}
-                showAtoms={showAtoms}
-                onToggleAtoms={() => setShowAtoms((v) => !v)}
-                showBonds={showBonds}
-                onToggleBonds={() => setShowBonds((v) => !v)}
-                showOcta={showOcta}
-                onToggleOcta={() => setShowOcta((v) => !v)}
-                showTetra={showTetra}
-                onToggleTetra={() => setShowTetra((v) => !v)}
-                showVoidCages={showVoidCages}
-                onToggleVoidCages={() => setShowVoidCages((v) => !v)}
-                showMillerPlanes={showMillerPlanes}
-                onToggleMillerPlanes={() => setShowMillerPlanes((v) => !v)}
-                activeMillerPlane={activeMillerPlane}
-                onSelectMillerPlane={setActiveMillerPlane}
-                supercellSize={supercellSize}
-                onSelectSupercell={setSupercellSize}
-                measState={measState}
-                onToggleMeas={handleToggleMeas}
-                atomScale={atomScale}
-                onAtomScaleChange={setAtomScale}
-                autoRotate={autoRotate}
-                onToggleAutoRotate={() => setAutoRotate((v) => !v)}
-                isHex={isHex}
-                hasOcta={hasOcta}
-                hasTetra={hasTetra}
+        <div className="crystal-view-layout">
+          {/* Split 3D View and Sidebar */}
+          <div className="workspace-split">
+            {/* 3D Canvas Area */}
+            <div className="canvas-column">
+              <CrystalCanvas
+                structureDef={activeStructureDef}
                 compound={rawCompound}
                 activeA={activeA}
                 activeC={activeC}
+                effectiveCompound={effectiveCompound}
+                showAtoms={showAtoms}
+                showBonds={showBonds}
+                showOcta={showOcta}
+                showTetra={showTetra}
+                showVoidCages={showVoidCages}
+                showMillerPlanes={showMillerPlanes}
+                activeMillerPlane={activeMillerPlane}
+                supercellSize={supercellSize}
+                measState={measState}
+                atomScale={atomScale}
+                autoRotate={autoRotate}
+                stochasticDisorder={stochasticDisorder}
+                pztFraction={pztFraction}
+                resetTrigger={resetTrigger}
               />
             </div>
 
-            {/* Structure and Material Information Cards */}
-            <InfoCardPanel
-              structureDef={activeStructureDef}
+            {/* Controls Column */}
+            <ControlSidebar
+              compounds={COMPOUNDS}
+              selectedCompoundId={selectedCompoundId}
+              onSelectCompound={handleSelectCompound}
+              categoryTab={categoryTab}
+              onSelectCategory={setCategoryTab}
+              temperature={temperature}
+              onTemperatureChange={setTemperature}
+              activePhase={activePhase}
+              pztFraction={pztFraction}
+              onPztFractionChange={setPztFraction}
+              stochasticDisorder={stochasticDisorder}
+              onToggleStochasticDisorder={setStochasticDisorder}
+              showAtoms={showAtoms}
+              onToggleAtoms={() => setShowAtoms((v) => !v)}
+              showBonds={showBonds}
+              onToggleBonds={() => setShowBonds((v) => !v)}
+              showOcta={showOcta}
+              onToggleOcta={() => setShowOcta((v) => !v)}
+              showTetra={showTetra}
+              onToggleTetra={() => setShowTetra((v) => !v)}
+              showVoidCages={showVoidCages}
+              onToggleVoidCages={() => setShowVoidCages((v) => !v)}
+              showMillerPlanes={showMillerPlanes}
+              onToggleMillerPlanes={() => setShowMillerPlanes((v) => !v)}
+              activeMillerPlane={activeMillerPlane}
+              onSelectMillerPlane={setActiveMillerPlane}
+              supercellSize={supercellSize}
+              onSelectSupercell={setSupercellSize}
+              measState={measState}
+              onToggleMeas={handleToggleMeas}
+              atomScale={atomScale}
+              onAtomScaleChange={setAtomScale}
+              autoRotate={autoRotate}
+              onToggleAutoRotate={() => setAutoRotate((v) => !v)}
+              isHex={isHex}
+              hasOcta={hasOcta}
+              hasTetra={hasTetra}
               compound={rawCompound}
               activeA={activeA}
               activeC={activeC}
-              effectiveCompound={effectiveCompound}
-              activePhase={activePhase}
             />
           </div>
-        ) : (
-          /* Dislocation & Slip Studio Mode */
-          <DislocationStudio activeStructureId={activeStructureDef.id} />
-        )}
+
+          {/* Structure and Material Information Cards */}
+          <InfoCardPanel
+            structureDef={activeStructureDef}
+            compound={rawCompound}
+            activeA={activeA}
+            activeC={activeC}
+            effectiveCompound={effectiveCompound}
+            activePhase={activePhase}
+          />
+        </div>
       </main>
 
       {/* Guide & Help Modal */}

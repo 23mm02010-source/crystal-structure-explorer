@@ -3,12 +3,8 @@ import {
   X,
   BookOpen,
   Layers,
-  Compass,
-  Activity,
-  Triangle,
   Diamond,
   CheckCircle,
-  HelpCircle,
 } from 'lucide-react';
 
 export default function HelpModal({ isOpen, onClose }) {
@@ -20,7 +16,7 @@ export default function HelpModal({ isOpen, onClose }) {
         <div className="modal-header">
           <div className="modal-title-wrap">
             <BookOpen size={20} className="modal-icon" />
-            <span className="modal-title">Crystallography &amp; Defects Primer</span>
+            <span className="modal-title">Crystallography Primer</span>
           </div>
           <button className="modal-close-btn" onClick={onClose}>
             <X size={18} />
@@ -81,31 +77,6 @@ export default function HelpModal({ isOpen, onClose }) {
             </ul>
             <p>
               Turn on the <strong>Octa/Tetra Voids</strong> toggle to inspect their polyhedral shapes and connector lines radiating to their coordinating atom cages.
-            </p>
-          </div>
-
-          {/* Section 4 */}
-          <div className="modal-guide-section">
-            <div className="guide-section-heading">
-              <Activity size={16} />
-              <span>4. Dislocations, Burgers Vector &amp; Plastic Deformation</span>
-            </div>
-            <p>
-              Metals do not deform by sliding whole atomic planes over each other simultaneously (which would require gigapascals of force). Instead, they deform by the sequential glide of 1D line defects called <strong>dislocations</strong>:
-            </p>
-            <ul className="guide-bullets">
-              <li>
-                <strong>Edge Dislocation (⊥):</strong> Formed by inserting an extra half-plane of atoms into the crystal. The Burgers vector b is perpendicular to the dislocation line (b ⊥ ξ).
-              </li>
-              <li>
-                <strong>Screw Dislocation (↺):</strong> Formed by shear stress cutting halfway into the crystal and shifting atomic planes by one atomic step into a continuous helical spiral ramp (b ∥ ξ).
-              </li>
-              <li>
-                <strong>Burgers Circuit &amp; Closure Failure:</strong> A path traveled equal steps right, up, left, and down around the dislocation core fails to close! The closure gap vector is the <strong>Burgers Vector (b)</strong>.
-              </li>
-            </ul>
-            <p>
-              Switch to the <strong>Dislocation &amp; Slip Studio</strong> tab at the top to animate dislocation glide and step through the Burgers circuit in 3D!
             </p>
           </div>
         </div>
